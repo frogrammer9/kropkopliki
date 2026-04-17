@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+legacy=false
+
+while getopts ":n:h:u:l" opt; do
+	case "$opt" in
+		n) name="$OPTARG" ;;
+		h) host="$OPTARG" ;;
+		u) user="$OPTARG" ;;
+		l) legacy=true ;;
+		:)
+			echo "Option -$OPTARG requires an argument"
+			exit 1
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG"
+			exit 1
+			;;
+	esac
+done
+
+shift $((OPTIND - 1))
+
+if [[ -z "$name" || -z "$host" || -z "$user" ]]; then
+	echo "Usage: $0 -n name -h host -u user [-l (rsa)]"
+	exit 1
+fi
+
+SSH_DIR="/home/sshu/.ssh"
+KEY="$SSH_DIR/$name"
+CONFIG="$SSH_DIR/config"
+
+mkdir -p "$SSH_DIR"
+chmod 700 "$SSH_DIR"
+
+if [[ -f "$KEY" ]]; then
+	read -rp "Key with name: \"$name\" already exists. Do you want to override it? [y/N]: " ans
+	case "$ans" in 
+		[yY]|[yY][eE][sS]) ;;
+		*) exit 2 ;;
+	esac
+	sed -i "/# BEGIN $name/,/# END $name/d" "$CONFIG"
+fi
+
+if $legacy; then
+	ssh-keygen -t rsa -b 4096 -C "" -f "$KEY"
+else
+	ssh-keygen -t ed25519 -C "" -f "$KEY"
+fi
+
+cat >> "$CONFIG" <<EOF
+# BEGIN $name
+Host $name
+	HostName $host
+	User $user
+	IdentityFile $KEY
+# END $name
+EOF

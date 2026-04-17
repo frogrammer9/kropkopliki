@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [[ "$#" -ne 1 ]] || [[ "$1" == "help" ]] || [[ "$1" == "?" ]]; then
+	echo "Usage: sshu-add \"name\""
+	exit 1
+fi
+
+name="$1"
+
+SSH_DIR="/home/sshu/.ssh"
+KEY="$SSH_DIR/$name"
+CONFIG="$SSH_DIR/config"
+
+if [[ ! -f "$KEY" ]]; then
+	echo "No key with name: \"$name\" found"
+	exit 1
+fi
+
+SOCK="/run/sshu/agent.sock"
+
+SSH_AUTH_SOCK="$SOCK" ssh-add "$KEY"

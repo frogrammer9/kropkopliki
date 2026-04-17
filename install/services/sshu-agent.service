@@ -1,0 +1,14 @@
+[Unit]
+Description=SSHU Agent
+After=network.target
+
+[Service]
+User=sshu
+Group=sshusers
+Environment=SSH_AUTH_SOCK=/run/sshu/agent.sock
+RuntimeDirectory=sshu
+RuntimeDirectoryMode=0750
+ExecStart=/usr/bin/ssh-agent -D -a /run/sshu/agent.sock
+
+[Install]
+WantedBy=multi-user.target

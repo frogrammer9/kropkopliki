@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [[ "$#" -ne 1 ]]; then
+	echo "Usage: sshu-rmkey \"name\""
+	exit 1
+fi
+
+name="$1"
+
+SSH_DIR="/home/sshu/.ssh"
+KEY="$SSH_DIR/$name"
+CONFIG="$SSH_DIR/config"
+
+rm "$KEY"
+sed -i "/# BEGIN $name/,/# END $name/d" "$CONFIG"
+

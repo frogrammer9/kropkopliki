@@ -44,6 +44,7 @@ onefetch
 pipewire-pulse
 plymouth
 rofi
+rsync
 rtkit
 slurp
 smartmontools

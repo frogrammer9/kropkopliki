@@ -6,7 +6,7 @@ sudo plymouth-set-default-theme -R arch-bgrt
 
 if [ -d '/boot/grub' ]; then
 	sudo sed -i \
-		's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 rd.systemd.show_status=false quiet splash vt.global_cursor_default=0"' \
+		's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 rd.systemd.show_status=false quiet splash vt.global_cursor_default=0"/' \
 		/etc/default/grub
 	sudo grub-mkconfig -o /boot/grub/grub.cfg
 else
