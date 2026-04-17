@@ -1,0 +1,38 @@
+[user]
+	name =
+	email =
+
+[core]
+	editor = nvim
+	eol = lf
+
+[init]
+	defaultBranch = main
+
+[push]
+	default = simple
+	autoSetupRemote = true
+
+[pull]
+	ff = only
+
+[fetch]
+	prune = true
+
+[color]
+	ui = auto
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autosquash = true
+	autostash = true
+
+[help]
+	autocorrect = yes
+
+[alias]
+	co = checkout
+	amend = commit --amend --no-edit
+	glog = log --oneline --graph --decorate --all

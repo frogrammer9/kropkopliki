@@ -29,12 +29,15 @@ mkdir -p "$HOME/.local/logs"
 ln -sf "$DOTFILES/config" "$HOME/.config"
 ln -sf "$DOTFILES/profile" "$HOME/.profile"
 
-read -p "Dotfiles need system restart to fully configure. Do you want to reboot now?" ans
+"$DOTFILES/install/plymouth.sh"
+"$DOTFILES/install/ly.sh"
+"$DOTFILES/install/services.sh"
+"$DOTFILES/install/browser.sh"
+"$DOTFILES/install/ssh.sh"
+"$DOTFILES/install/git.sh"
+
+read -p "Dotfiles need system restart to fully configure. Do you want to reboot now [Y/n]: " ans
 case "$ans" in 
 	[nN]|[nN][oO]) ;;
 	*) reboot;;
 esac
-
-"$DOTFILES/install/plymouth.sh"
-"$DOTFILES/install/ly.sh"
-"$DOTFILES/install/services.sh"
