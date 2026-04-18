@@ -31,7 +31,6 @@ mkdir -p "$HOME/.local/share"
 mkdir -p "$HOME/.local/logs"
 
 ln -sf "$DOTFILES/config" "$HOME/.config"
-ln -sf "$DOTFILES/profile" "$HOME/.profile"
 
 "$DOTFILES/install/services.sh"
 "$DOTFILES/install/sudo.sh"
