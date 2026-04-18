@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Setting up sudoers..."
+
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES=$(cd -- "$SCRIPT_DIR/.." && pwd)
 
