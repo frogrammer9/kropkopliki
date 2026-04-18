@@ -36,10 +36,12 @@ chmod 700 "$SSH_DIR"
 if [[ -f "$KEY" ]]; then
 	read -rp "Key with name: \"$name\" already exists. Do you want to override it? [y/N]: " ans
 	case "$ans" in 
-		[yY]|[yY][eE][sS]) ;;
+		[yY]|[yY][eE][sS])
+			rm "$KEY"
+			sed -i "/# BEGIN $name/,/# END $name/d" "$CONFIG"
+			;;
 		*) exit 2 ;;
 	esac
-	sed -i "/# BEGIN $name/,/# END $name/d" "$CONFIG"
 fi
 
 if $legacy; then
@@ -47,6 +49,7 @@ if $legacy; then
 else
 	ssh-keygen -t ed25519 -C "" -f "$KEY"
 fi
+rm "$KEY.pub"
 
 cat >> "$CONFIG" <<EOF
 # BEGIN $name
