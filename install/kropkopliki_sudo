@@ -1,2 +1,0 @@
-user_name_phold ALL=(sshu) /usr/bin/ssh-add
-user_name_phold ALL=(sshu) /usr/bin/ssh-keygen

@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES=$(cd -- "$SCRIPT_DIR/.." && pwd)
+DOTFILES="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 if ! [ -d "$DOTFILES/install" ]; then
 	echo "Kropkopliki have already been installed"
@@ -21,7 +20,7 @@ case "$ans" in
 	[nN]|[nN][oO]) ;;
 	*)
 		[ -d "$HOME/.config" ] && mv "$HOME/.config" "$HOME/.config.backup.$(date +%s)"
-		[ -d "$HOME/.local" ] && mv "$HOME/.local" "$HOME/.local.backup.$(date +%s)"
+	;;
 esac
 
 rm -rf "$HOME/.config"
@@ -31,13 +30,15 @@ mkdir -p "$HOME/.local/share"
 mkdir -p "$HOME/.local/logs"
 
 ln -sf "$DOTFILES/config" "$HOME/.config"
+ln -sf "$DOTFILES/profile" "$HOME/.profile"
 
-"$DOTFILES/install/services.sh"
-"$DOTFILES/install/sudo.sh"
+systemctl --user daemon-reload
+systemctl --user enable --now ssh-agent
+
+"$DOTFILES/install/grub.sh"
 "$DOTFILES/install/plymouth.sh"
 "$DOTFILES/install/ly.sh"
 "$DOTFILES/install/browser.sh"
-"$DOTFILES/install/ssh.sh"
 "$DOTFILES/install/git.sh"
 
 rm -rf "$DOTFILES/install"
