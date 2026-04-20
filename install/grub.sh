@@ -5,7 +5,7 @@ if [ -d '/boot/grub' ]; then
 	case "$ans" in 
 		[nN]|[nN][oO]) ;;
 		*)
-			sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0' /etc/default/grub
+			sudo sed -i 's/^GRUB_TIMEOUT=.*/GRUB_TIMEOUT=0/' /etc/default/grub
 			sudo grub-mkconfig -o /boot/grub/grub.cfg
 		;;
 	esac

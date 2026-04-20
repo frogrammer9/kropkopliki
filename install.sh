@@ -15,6 +15,8 @@ fi
 # install packages
 sudo pacman -Syu --needed $(< "$DOTFILES/install/pkglist.txt")
 
+chsh -s $(whereis fish | awk '{print $2}')
+
 read -p "Do you want to back up your existing config [Y/n]: " ans
 case "$ans" in 
 	[nN]|[nN][oO]) ;;
