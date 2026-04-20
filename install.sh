@@ -31,6 +31,8 @@ mkdir -p "$HOME/.local/state"
 mkdir -p "$HOME/.local/share"
 mkdir -p "$HOME/.local/logs"
 
+rm ~/.bash*
+
 ln -sf "$DOTFILES/config" "$HOME/.config"
 ln -sf "$DOTFILES/profile" "$HOME/.profile"
 
