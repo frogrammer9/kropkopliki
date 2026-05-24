@@ -43,6 +43,7 @@ nload
 nmap
 onefetch
 openssh
+pipewire
 pipewire-pulse
 plymouth
 rofi
@@ -60,4 +61,5 @@ unzip
 vlc
 waybar
 whois
+wireplumber
 wl-clipboard

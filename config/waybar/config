@@ -1,0 +1,177 @@
+{
+	"layer": "top",
+	"position": "top",
+	"reload_style_on_change": true,
+	"modules-left": [
+		"sway/mode",
+		"sway/workspaces"
+	],
+	"modules-center": [
+		"group/clock"
+	],
+	"modules-right": [
+		"group/hardware",
+		"group/network",
+		"group/levels",
+		"group/power"
+	],
+	"sway/mode": {
+		"tooltip": false,
+		"format": "{}",
+		"max-length": "10"
+	},
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{name}",
+		"current-only": false
+	},
+	"battery": {
+		"interval": "120",
+		"format": "{power}W {icon} {capacity}% {time}",
+		"format-time": "{H}:{m}",
+		"format-icons": {
+			"default": [
+				"󰁺",
+				"󰁻",
+				"󰁼",
+				"󰁽",
+				"󰁾",
+				"󰁿",
+				"󰂀",
+				"󰂁",
+				"󰂂",
+				"󰁹"
+			],
+			"charging": [
+				"󰢜",
+				"󰂆",
+				"󰂇",
+				"󰂈",
+				"󰢝",
+				"󰂉",
+				"󰢞",
+				"󰂊",
+				"󰂋",
+				"󰂅"
+			]
+		},
+		"tooltip": false
+	},
+	"clock": {
+		"interval": "60",
+		"tooltip": true,
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"format": "󰸗  {:%A %d-%m-%Y  󰥔  %H:%M}",
+		"calendar": {
+			"mode": "year",
+			"mode-mon-col": 3,
+			"on-scroll": 1
+		}
+	},
+	"cpu": {
+		"interval": "2",
+		"tooltip": false,
+		"format": "  {usage}%"
+	},
+	"temperature": {
+		"interval": "2",
+		"format": " {temperatureC}°C",
+		"tooltip": false
+	},
+	"memory": {
+		"interval": "2",
+		"tooltip": true,
+		"tooltip-format": "Usage (GiB): {used}/{total}\nSwap (GiB): {swapUsed}/{swapTotal}",
+		"format": "  {percentage}%"
+	},
+	"disk": {
+		"interval": "2",
+		"format": "󱛟  {specific_used:0.0f}/{specific_free:0.0f} GiB",
+		"unit": "GiB",
+		"tooltip": false
+	},
+	"network": {
+		"tooltip": false,
+		"interval": "2",
+		"family": "ipv4_6",
+		"format-ethernet": "   󰛴 {bandwidthDownBytes} 󰛶 {bandwidthUpBytes}",
+		"format-wifi": "{icon}  {essid}  󰛴 {bandwidthDownBytes} 󰛶 {bandwidthUpBytes}",
+		"format-disconnected": "",
+		"format-disabled": "󰅛",
+		"format-icons": [
+			"󰤯",
+			"󰤟",
+			"󰤢",
+			"󰤥",
+			"󰤨"
+		]
+	},
+	"bluetooth": {
+		"tooltip": false,
+		"format-connected": " {device_alias}",
+		"format": "󰂲"
+	},
+	"wireplumber": {
+		"tooltip": false,
+		"format-muted": "",
+		"format": "󰓃  {node_name} {icon}  {volume}%",
+		"format-icons": [
+			"",
+			"",
+			""
+		]
+	},
+	"backlight": {
+		"tooltip": false,
+		"interval": "30",
+		"format": "{icon} {percent}%",
+		"format-icons": [
+			"󱩎",
+			"󱩏",
+			"󱩐",
+			"󱩑",
+			"󱩒",
+			"󱩓",
+			"󱩔",
+			"󱩕",
+			"󱩖",
+			"󰛨"
+		]
+	},
+	"group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+			"cpu",
+			"temperature",
+			"memory",
+			"disk"
+		]
+	},
+	"group/network": {
+		"orientation": "horizontal",
+		"modules": [
+			"network",
+			"bluetooth"
+		]
+	},
+	"group/levels": {
+		"orientation": "horizontal",
+		"modules": [
+			"wireplumber",
+			"backlight"
+		]
+	},
+	"group/power": {
+		"orientation": "horizontal",
+		"modules": [
+			"battery"
+		]
+	},
+	"group/clock": {
+		"orientation": "horizontal",
+		"modules": [
+			"clock"
+		]
+	}
+}
